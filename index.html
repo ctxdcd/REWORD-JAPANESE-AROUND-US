@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#E8A0B5">
+<meta name="description" content="Repeat. Recall. Remember. Learn Japanese vocabulary with REWORD.">
+<title>REWORD — Japanese Around Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-container">
+
+<header class="top-header">
+  <div class="brand"><h1>REWORD<span>.</span></h1><p>JAPANESE AROUND US</p></div>
+  <button type="button" class="header-decoration" id="aboutButton" aria-label="About REWORD Japanese Around Us" aria-haspopup="dialog">✦</button>
+</header>
+
+<main id="homePage" class="page active">
+  <section class="welcome-section">
+    <span class="eyebrow">Your Language Journey</span>
+    <h2>Learn a little<br>Remember a lot</h2>
+    <p>Name the world around you.<br>Repeat, recall, remember.</p>
+    <div class="repo-card">
+      <span class="eyebrow">MY OTHER PROJECTS</span>
+      <p class="repo-text">Visit my GitHub to see more repositories.</p>
+      <div class="repo-links">
+        <a class="repo-link" href="https://ctxdcd.github.io/REWORD-JAPANESE" target="_blank" rel="noopener noreferrer" aria-label="Live website"><img src="img/repository/website.webp" alt="" class="repo-icon" width="26" height="26" loading="lazy"><span>Essentials</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="section-heading">
+    <div><span class="eyebrow">Start</span><h3>Choose a category</h3></div>
+    <span class="category-count" id="categoryCount">07</span>
+  </section>
+  <section id="categoryList" class="category-list"></section>
+</main>
+
+<main id="categoryPage" class="page">
+  <button class="back-button" onclick="goHome()"><span>‹</span> Home</button>
+  <section class="page-heading"><span class="eyebrow">Category</span><h2 id="categoryTitle"></h2><p id="categoryDescription"></p></section>
+  <section id="subcategoryList" class="vocabulary-list"></section>
+</main>
+
+<main id="subcategoryPage" class="page">
+  <button class="back-button" onclick="goCategory()"><span>‹</span> Back</button>
+  <section class="page-heading"><span class="eyebrow">Subcategory</span><h2 id="subcategoryTitle"></h2><p id="subcategoryDescription"></p></section>
+  <section id="vocabularyList" class="vocabulary-list"></section>
+</main>
+
+<main id="detailPage" class="page">
+  <button class="back-button" onclick="goSubcategory()"><span>‹</span> Back</button>
+  <section class="detail-card">
+    <div class="detail-illustration" id="detailIllustration">✨</div>
+    <span class="eyebrow">VOCABULARY</span>
+    <h2 id="detailTerm"></h2>
+    <div class="english-word" id="detailEnglish"></div>
+    <div class="detail-divider"></div>
+    <div class="detail-information">
+      <div class="information-item"><span>PRONUNCIATION</span><p id="detailPronunciation"></p></div>
+      <div class="information-item"><span>MEANING</span><p id="detailDescription"></p></div>
+    </div>
+    <div class="button-row">
+      <button class="primary-button" onclick="startPractice()">Start Practicing</button>
+      <button class="secondary-button" id="altButton" onclick="openAlternatives()" hidden>Other Ways to Say</button>
+    </div>
+  </section>
+</main>
+
+<main id="alternativesPage" class="page">
+  <button class="back-button" onclick="goDetail()"><span>‹</span> Back</button>
+  <section class="page-heading"><span class="eyebrow">Other Ways</span><h2 id="alternativesTitle"></h2><p>These are not always exact synonyms. Notice how each one differs.</p></section>
+  <div class="alt-filters" id="alternativeFilters" role="group" aria-label="Filter by usage"></div>
+  <section id="alternativesList" class="alt-list"></section>
+</main>
+
+<main id="practicePage" class="page">
+  <button class="back-button" onclick="goDetail()"><span>‹</span> Back</button>
+  <section class="practice-container">
+    <div class="practice-header"><span class="eyebrow">RECALL PRACTICE</span><h2>Let's remember.</h2><p>Take your time. There is no rush.</p></div>
+    <div class="score-container">
+      <div class="score-card"><span>T</span><strong id="trueCount">0</strong></div>
+      <div class="score-card"><span>F</span><strong id="falseCount">0</strong></div>
+    </div>
+    <div class="question-card">
+      <span class="question-label">TRANSLATE INTO JAPANESE</span>
+      <h2 id="practiceEnglish">Yes</h2>
+      <p>What is this in Japanese?</p>
+      <form id="answerForm">
+        <input type="text" id="answerInput" placeholder="Type in Japanese..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button type="submit" class="primary-button">Check Answer</button>
+      </form>
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+    </div>
+    <p class="practice-note">Keep practicing until you feel confident.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <span class="footer-brand">REWORD.</span>
+  <strong class="footer-sub">JAPANESE AROUND US</strong>
+  <p>Repeat. Recall. Remember.</p>
+</footer>
+</div>
+
+<div class="modal-overlay" id="aboutModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <span class="eyebrow">ABOUT</span>
+    <h2 id="aboutTitle">About REWORD Japanese Around Us</h2>
+    <p class="modal-lead">REWORD is a simple Japanese vocabulary trainer built around one idea: Repeat. Recall. Remember. This edition names the objects, places, and things around you.</p>
+    <div class="modal-divider"></div>
+    <div class="modal-steps">
+      <div class="modal-step"><strong>01</strong><p>Pick a category and open a word to see its Japanese spelling, pronunciation, and meaning.</p></div>
+      <div class="modal-step"><strong>02</strong><p>Start practicing and type the Japanese word from memory.</p></div>
+      <div class="modal-step"><strong>03</strong><p>Repeat until it sticks. No rush, no pressure.</p></div>
+    </div>
+    <button type="button" class="primary-button" id="aboutClose">Got it</button>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
